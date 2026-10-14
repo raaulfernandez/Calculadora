@@ -30,7 +30,6 @@ def guardar_historial(funcion):
 
     return nueva_funcion
 
-
 while True:
     try:
         eleccion = int(input("""Bienvenido a la calculadora, elija una opción (del 1 al 5):
@@ -50,6 +49,7 @@ Elige qué operación realizar: """))
 
 resultado = None
 operacion = ""
+historial = []
 
 
 while eleccion != 6:
@@ -64,7 +64,8 @@ while eleccion != 6:
             num1 = resultado
 
         num2 = pedir_numero("Dime el segundo número: ")
-
+        historial.append((resultado,operacion))
+        
         resultado = suma(num1, num2)
         operacion = "(" + operacion + " + " + str(num2) + ")"
 
@@ -80,6 +81,7 @@ while eleccion != 6:
             num1 = resultado
 
         num2 = pedir_numero("Dime el segundo número: ")
+        historial.append((resultado,operacion))
 
         resultado = resta(num1, num2)
         operacion = "(" + operacion + " - " + str(num2) + ")"
@@ -96,6 +98,7 @@ while eleccion != 6:
             num1 = resultado
 
         num2 = pedir_numero("Dime el segundo número: ")
+        historial.append((resultado,operacion))
 
         resultado = multiplicar(num1, num2)
         operacion = "(" + operacion + " * " + str(num2) + ")"
@@ -112,6 +115,7 @@ while eleccion != 6:
             num1 = resultado
 
         num2 = pedir_numero("Dime el segundo número: ")
+        historial.append((resultado,operacion))
 
         try:
             resultado = dividir(num1, num2)
@@ -121,6 +125,14 @@ while eleccion != 6:
 
         except ZeroDivisionError:
             print("Error: no se puede dividir entre cero.")
+    
+    elif eleccion == 5:
+        if len(historial) > 0:
+            resultado, operacion = historial.pop()
+            print(operacion, "=", resultado)
+            
+        else:
+            print("No hay ninguna operación anterior.")
 
 
     else:
