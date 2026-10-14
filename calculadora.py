@@ -31,7 +31,6 @@ def guardar_historial(funcion):
     return nueva_funcion
 
 
-# Pedimos la opción inicial
 while True:
     try:
         eleccion = int(input("""Bienvenido a la calculadora, elija una opción (del 1 al 5):
